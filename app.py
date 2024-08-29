@@ -18,11 +18,11 @@ BUCKET_NAME='s3-bucket-training'
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
     try:
-        if file:
-            print(file.filename)
-            s3.upload_fileobj(file.file, BUCKET_NAME, file.filename)
-            return "file uploaded"
-        else:
-            return "error in uploading."
+        print(file.filename)
+        s3.upload_fileobj(file.file, BUCKET_NAME, file.filename)
+        return "file uploaded"
     except Exception as e:
         return e
+    
+# Lambda with API Gateway -> Step function (lambda) -> ECS -> SNS -> 
+# tasks/01H27THKWKQG6KDF1SMGZ3S03P/input/AMG-MF LMS-Territory Map-20230127.txt
